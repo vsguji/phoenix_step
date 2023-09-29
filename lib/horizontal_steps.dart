@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:phoenix_base/phoenix.dart';
 import 'package:phoenix_line/phoenix_line.dart';
 
+import 'extension/step_assets.dart';
+
 const double _kItemSidePadding = 5;
 
 /// 描述: 横向步骤条,是一种常见的导航形式，它具有导航通用的属性：告知用户”我在哪/我能去哪“，
@@ -192,19 +194,19 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     Widget icon;
     switch (index) {
       case 1:
-        icon = PhoenixTools.getAssetSizeImage(BaseAsset.iconStep2, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep2, 20, 20);
         break;
       case 2:
-        icon = PhoenixTools.getAssetSizeImage(BaseAsset.iconStep3, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep3, 20, 20);
         break;
       case 3:
-        icon = PhoenixTools.getAssetSizeImage(BaseAsset.iconStep4, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep4, 20, 20);
         break;
       case 4:
-        icon = PhoenixTools.getAssetSizeImage(BaseAsset.iconStep5, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep5, 20, 20);
         break;
       default:
-        icon = PhoenixTools.getAssetSizeImage(BaseAsset.iconStepDoing, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStepDoing, 20, 20);
         break;
     }
     return icon;
@@ -243,7 +245,7 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     }
 
     /// 使用组件默认的icon
-    return PhoenixTools.getAssetSizeImage(BaseAsset.iconStepCompleted, 20, 20,
+    return PhoenixTools.getAssetSizeImage(StepAssets.iconStepCompleted, 20, 20,
         color: _primary);
   }
 
@@ -259,7 +261,7 @@ class HorizontalStepsState extends State<HorizontalSteps> {
       return doingIcon;
     }
     // 使用组件默认的icon
-    return PhoenixTools.getAssetSizeImage(BaseAsset.iconStepDoing, 20, 20,
+    return PhoenixTools.getAssetSizeImage(StepAssets.iconStepDoing, 20, 20,
         color: _primary);
   }
 }
