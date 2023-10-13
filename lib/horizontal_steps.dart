@@ -14,10 +14,10 @@ class HorizontalSteps extends StatefulWidget {
   /// The steps of the stepper whose titles, subtitles, icons always get shown.
   ///
   /// 步骤条中元素的列表
-  final List<BrunoStep> steps;
+  final List<PhoenixStep> steps;
 
   /// 控制类
-  final BrnStepsController? controller;
+  final StepsController? controller;
 
   /// 自定义正在进行状态的icon
   final Widget? doingIcon;
@@ -91,7 +91,7 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     /// 单独一个widget组件，用于返回需要生成的内容widget
     Widget content;
     final List<Widget> childrenList = <Widget>[];
-    final List<BrunoStep> steps = widget.steps;
+    final List<PhoenixStep> steps = widget.steps;
     final int length = steps.length;
     for (int i = 0; i < length; i += 1) {
       childrenList.add(_applyStepItem(steps[i], i));
@@ -107,7 +107,7 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     return content;
   }
 
-  Widget _applyStepItem(BrunoStep step, int index) {
+  Widget _applyStepItem(PhoenixStep step, int index) {
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +119,7 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     );
   }
 
-  Widget _applyStepAndLine(BrunoStep step, int index) {
+  Widget _applyStepAndLine(PhoenixStep step, int index) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -134,20 +134,20 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     );
   }
 
-  Widget _applyStepIcon(BrunoStep step, int index) {
+  Widget _applyStepIcon(PhoenixStep step, int index) {
     Widget icon;
     if (widget.controller?.isCompleted == true) {
       return _getCompletedIcon(step);
     }
     if (step.state != null) {
       switch (step.state) {
-        case BrunoStepState.indexed:
+        case PhoenixStepState.indexed:
           icon = _getIndexIcon(index);
           break;
-        case BrunoStepState.complete:
+        case PhoenixStepState.complete:
           icon = _getCompletedIcon(step);
           break;
-        case BrunoStepState.doing:
+        case PhoenixStepState.doing:
           icon = _getDoingIcon(step);
           break;
         default:
@@ -194,25 +194,30 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     Widget icon;
     switch (index) {
       case 1:
-        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep2, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep2, 20, 20,
+            package: 'phoenix_step');
         break;
       case 2:
-        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep3, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep3, 20, 20,
+            package: 'phoenix_step');
         break;
       case 3:
-        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep4, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep4, 20, 20,
+            package: 'phoenix_step');
         break;
       case 4:
-        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep5, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStep5, 20, 20,
+            package: 'phoenix_step');
         break;
       default:
-        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStepDoing, 20, 20);
+        icon = PhoenixTools.getAssetSizeImage(StepAssets.iconStepDoing, 20, 20,
+            package: 'phoenix_step');
         break;
     }
     return icon;
   }
 
-  Widget _applyStepContent(BrunoStep step, int index) {
+  Widget _applyStepContent(PhoenixStep step, int index) {
     Widget? stepContent = step.stepContent;
     if (stepContent != null) {
       return stepContent;
@@ -232,7 +237,7 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     );
   }
 
-  Widget _getCompletedIcon(BrunoStep step) {
+  Widget _getCompletedIcon(PhoenixStep step) {
     Widget? completedIcon = step.completedIcon;
     if (completedIcon != null) {
       /// 如果Step中自定义completedIcon不为空，则使用自定义的icon
@@ -246,10 +251,10 @@ class HorizontalStepsState extends State<HorizontalSteps> {
 
     /// 使用组件默认的icon
     return PhoenixTools.getAssetSizeImage(StepAssets.iconStepCompleted, 20, 20,
-        color: _primary);
+        color: _primary, package: 'phoenix_step');
   }
 
-  Widget _getDoingIcon(BrunoStep step) {
+  Widget _getDoingIcon(PhoenixStep step) {
     Widget? doingIcon = step.doingIcon;
     if (doingIcon != null) {
       /// 如果Step中自定义doingIcon不为空，则使用自定义的icon
@@ -262,11 +267,11 @@ class HorizontalStepsState extends State<HorizontalSteps> {
     }
     // 使用组件默认的icon
     return PhoenixTools.getAssetSizeImage(StepAssets.iconStepDoing, 20, 20,
-        color: _primary);
+        color: _primary, package: 'phoenix_step');
   }
 }
 
-enum BrunoStepState {
+enum PhoenixStepState {
   /// A step that displays its index in its circle.
   indexed,
 
@@ -277,11 +282,11 @@ enum BrunoStepState {
   complete
 }
 
-class BrunoStep {
+class PhoenixStep {
   /// Creates a step for a [Stepper].
   ///
   /// The [stepContent], [doingIcon] arguments can be null.
-  const BrunoStep({
+  const PhoenixStep({
     this.stepContent,
     this.doingIcon,
     this.stepContentText,
@@ -303,10 +308,10 @@ class BrunoStep {
 
   /// The state of the step which determines the styling of its components
   /// and whether steps are interactive.
-  final BrunoStepState? state;
+  final PhoenixStepState? state;
 }
 
-class BrnStepsController with ChangeNotifier {
+class StepsController with ChangeNotifier {
   /// 指示当前进行态的步骤
   int currentIndex;
 
@@ -316,7 +321,7 @@ class BrnStepsController with ChangeNotifier {
   /// 最大个数（最多只支持5个）
   int _maxCount = 0;
 
-  BrnStepsController({this.currentIndex = 0, this.isCompleted = false});
+  StepsController({this.currentIndex = 0, this.isCompleted = false});
 
   /// 只有在当前包内调用，不开放给外部调用
   void _setMaxCount(int _maxCount) {
