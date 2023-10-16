@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:phoenix_navbar/phoenix_navbar.dart';
 import 'package:phoenix_step/phoenix_step.dart';
 
-class BrnHorizontalStepExamplePage extends StatefulWidget {
+class HorizontalStepExamplePage extends StatefulWidget {
   final String title;
 
-  const BrnHorizontalStepExamplePage({Key? key, required this.title})
+  const HorizontalStepExamplePage({Key? key, required this.title})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return BrnHorizontalStepExamplePageState();
+    return HorizontalStepExamplePageState();
   }
 }
 
-class BrnHorizontalStepExamplePageState
-    extends State<BrnHorizontalStepExamplePage> {
+class HorizontalStepExamplePageState extends State<HorizontalStepExamplePage> {
   late int _index;
   double sliderValue = 2;
   late StepsController _controller;
